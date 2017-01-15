@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Image" representedClassName=".Image" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="toOccupation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Occupation" inverseName="toImage" inverseEntity="Occupation" syncable="YES"/>
+        <relationship name="toPerson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="toImage" inverseEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="Occupation" representedClassName=".Occupation" syncable="YES">
+        <attribute name="field" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="skills" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="toOccupation" inverseEntity="Image" syncable="YES"/>
+        <relationship name="toPerson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="toOccupation" inverseEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="Person" representedClassName=".Person" syncable="YES">
+        <attribute name="bloodGroup" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="emailId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobileNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toImage" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Image" inverseName="toPerson" inverseEntity="Image" syncable="YES"/>
+        <relationship name="toOccupation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Occupation" inverseName="toPerson" inverseEntity="Occupation" syncable="YES"/>
+        <relationship name="toPersonType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PersonType" inverseName="toPerson" inverseEntity="PersonType" syncable="YES"/>
+    </entity>
+    <entity name="PersonType" representedClassName=".PersonType" syncable="YES">
+        <attribute name="personType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="toPerson" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="toPersonType" inverseEntity="Person" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Image" positionX="-54" positionY="27" width="128" height="90"/>
+        <element name="Occupation" positionX="-36" positionY="36" width="128" height="120"/>
+        <element name="Person" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="PersonType" positionX="-27" positionY="81" width="128" height="75"/>
+    </elements>
+</model>
