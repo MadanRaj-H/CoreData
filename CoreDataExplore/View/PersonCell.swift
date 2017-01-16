@@ -29,6 +29,7 @@ class PersonCell: UITableViewCell {
         personMobileNumber.text = person.mobileNumber;
         personBloodGroup.text = person.bloodGroup
         personOccupation.text = "\((person.toOccupation?.field)!) , \((person.toOccupation?.location)!)"
+        thumbImage.image = person.toImage?.image as? UIImage;
     }
 
 }

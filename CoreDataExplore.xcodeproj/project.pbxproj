@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C8A0EC0F1E2C07C3001F5C27 /* PersonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A0EC0E1E2C07C3001F5C27 /* PersonVC.swift */; };
 		C8D31F6F1E2BB57D0042240F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D31F6E1E2BB57D0042240F /* AppDelegate.swift */; };
 		C8D31F711E2BB57D0042240F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D31F701E2BB57D0042240F /* ViewController.swift */; };
 		C8D31F741E2BB57D0042240F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8D31F721E2BB57D0042240F /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C8A0EC0E1E2C07C3001F5C27 /* PersonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonVC.swift; sourceTree = "<group>"; };
 		C8D31F6B1E2BB57D0042240F /* CoreDataExplore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataExplore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8D31F6E1E2BB57D0042240F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8D31F701E2BB57D0042240F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				C8D31F7A1E2BB57D0042240F /* LaunchScreen.storyboard */,
 				C8D31F7D1E2BB57D0042240F /* Info.plist */,
 				C8D31F751E2BB57D0042240F /* CoreDataExplore.xcdatamodeld */,
+				C8A0EC0E1E2C07C3001F5C27 /* PersonVC.swift */,
 			);
 			path = CoreDataExplore;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				C8D31FB51E2BE3C10042240F /* PersonType+CoreDataClass.swift in Sources */,
 				C8D31F6F1E2BB57D0042240F /* AppDelegate.swift in Sources */,
 				C8D31FB81E2BE3DE0042240F /* PersonType+CoreDataProperties.swift in Sources */,
+				C8A0EC0F1E2C07C3001F5C27 /* PersonVC.swift in Sources */,
 				C8D31FB11E2BBA060042240F /* Occupation+CoreDataProperties.swift in Sources */,
 				C8D31FB01E2BBA060042240F /* Image+CoreDataProperties.swift in Sources */,
 			);

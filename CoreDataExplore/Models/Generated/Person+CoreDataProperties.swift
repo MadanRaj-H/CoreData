@@ -23,5 +23,6 @@ extension Person {
     @NSManaged public var emailId: String?
     @NSManaged public var toImage: Image?
     @NSManaged public var toOccupation: Occupation?
+    @NSManaged public var toPersonType: PersonType?
 
 }

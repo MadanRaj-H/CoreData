@@ -20,7 +20,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-     //   getPersonData()
+      //  getPersonData()
         attemptFetch()
     }
 
@@ -55,7 +55,20 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if let objs = controller.fetchedObjects, objs.count > 0 {
+            let person = objs[indexPath.row]
+            performSegue(withIdentifier: "PersonVC", sender: person)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PersonVC"{
+            if let destination = segue.destination as? PersonVC {
+                if let person = sender as? Person{
+                    destination.personToEdit = person
+                }
+            }
+        }
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -94,11 +107,25 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         }
     }
     
+    @IBAction func segmentBtnPressed(_ sender: UISegmentedControl) {
+        attemptFetch()
+        self.tableView.reloadData()
+    }
     
     func attemptFetch(){
         let fetchRequest : NSFetchRequest<Person> = Person.fetchRequest()
         let contactsCreated = NSSortDescriptor(key: "created", ascending: false)
         fetchRequest.sortDescriptors = [contactsCreated]
+        if segment.selectedSegmentIndex == 0{
+            fetchRequest.predicate = NSPredicate(format: "toPersonType.personType == %@","Family")
+        }else if segment.selectedSegmentIndex == 1 {
+            fetchRequest.predicate = NSPredicate(format: "toPersonType.personType == %@","Friends")
+
+        }else {
+            fetchRequest.predicate = NSPredicate(format: "toPersonType.personType == %@","Employee")
+
+        }
+        
         let controller  = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         controller.delegate = self
         self.controller = controller
@@ -126,6 +153,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         person.toOccupation = occupation
         
+        let img = Image(context: context)
+        img.image = #imageLiteral(resourceName: "PersonImagePic")
+        person.toImage = img;
+        
+        
+        let personType = PersonType(context: context)
+        personType.personType = "Friends"
+        person.toPersonType = personType;
         
         let person1 = Person(context: context)
         person1.name = "Mukesh"
@@ -134,11 +169,20 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         person1.emailId = "mukesh@gmail.com"
         
         let occupation1 = Occupation(context: context)
-        occupation1.field = "IT"
+        occupation1.field = "Analytics"
         occupation1.location = "India"
-        occupation1.skills = "Java,Algorithms"
+        occupation1.skills = "Big Data"
         
         person1.toOccupation = occupation1
+        
+        
+        let img1 = Image(context: context)
+        img1.image = #imageLiteral(resourceName: "PersonImagePic")
+        person1.toImage = img1;
+        
+        let personType1 = PersonType(context: context)
+        personType1.personType = "Friends"
+        person1.toPersonType = personType1;
         
         ad.saveContext()
         
