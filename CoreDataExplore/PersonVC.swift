@@ -2,14 +2,14 @@
 //  PersonVC.swift
 //  CoreDataExplore
 //
-//  Created by mh53653 on 1/16/17.
+//  Created by Madan on 1/16/17.
 //  Copyright © 2017 madan. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class PersonVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class PersonVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var nameLabel: UITextField!
     @IBOutlet weak var mobileNumberLabel: UITextField!
@@ -28,12 +28,26 @@ class PersonVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UII
         
         imagePickerMedia = UIImagePickerController()
         imagePickerMedia.delegate = self
-       // getOccupation()
-        applyFetch()
         
+        let defaults = UserDefaults.standard;
+        if defaults.object(forKey: "isFirstRunPersonVC") == nil{
+            getOccupation()
+            defaults.set(true, forKey: "isFirstRunPersonVC")
+            defaults.synchronize()
+        }
+        applyFetch()
         if personToEdit != nil {
             loadPersonData()
+        } else {
+             self.imagePicker.selectRow(self.field.count/2, inComponent: 0, animated: false)
         }
+
+        nameLabel.delegate = self
+        mobileNumberLabel.delegate = self
+        bloodGroupLabel.delegate = self
+        personTypeLabel.delegate = self
+        personJobLocation.delegate = self
+        personSkillsLabel.delegate = self
     }
     @IBOutlet weak var imagePicker: UIPickerView!
     @IBOutlet weak var imageView: UIImageView!
@@ -45,6 +59,12 @@ class PersonVC: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource,UII
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

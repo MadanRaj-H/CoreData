@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  CoreDataExplore
 //
-//  Created by mh53653 on 1/15/17.
+//  Created by Madan on 1/15/17.
 //  Copyright © 2017 madan. All rights reserved.
 //
 
@@ -20,7 +20,13 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-      //  getPersonData()
+        
+        let defaults = UserDefaults.standard
+        if defaults.object(forKey: "isFirstRun") == nil {
+            getPersonData()
+            defaults.set(true, forKey: "isFirstRun")
+            defaults.synchronize();
+        }
         attemptFetch()
     }
 
